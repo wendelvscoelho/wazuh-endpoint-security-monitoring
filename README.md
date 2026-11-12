@@ -101,7 +101,7 @@ Além de ter cumprido com a missão de ter instalado o Agent e realizado a conex
 
 ## 8. Conclusão
 
-Configurei arquivos para monitorar a integridade dos mesmos e consegui analisá-los a cada pequena modificação realizada neles.
+Fiz o deploy de um novo Agent e configurei arquivos para monitorar a integridade dos mesmos, conseguindo analisá-los a cada pequena modificação realizada neles.
 Praticar e errar é a melhor forma de aprender algo e se familiarizar com determinado conteúdo.
 Agora o objetivo é fortalecer os conhecimentos com novas melhorias futuras e, assim, alcançar o nível de excelência desejado.
 
