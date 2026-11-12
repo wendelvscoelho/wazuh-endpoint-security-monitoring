@@ -82,8 +82,8 @@ Isso serve para ter a certeza de que um arquivo não foi modificado, pois quando
 
 ## 6. Resultados obtidos
 
-A instalação e conexão do Agent ao WAZUH_MANAGER foi efetuada com êxito, conseguindo, posteriormente, analisar eventos de modificação, dos arquivos configurados para monitoramento (test e test2). 
-Meu objetivo era simples, configurar meu Wazuh e fazer o deploy de um novo Agent e configurá-lo para analisar os eventos FIM. Porém, no decorrer do processo diversos imprevistos aconteceram, como:
+A instalação e conexão do Agent ao WAZUH_MANAGER foi efetuada com êxito, conseguindo, posteriormente, analisar eventos de modificação dos arquivos configurados para monitoramento (test e test2). 
+Meu objetivo era simples: configurar meu Wazuh e fazer o deploy de um novo Agent e configurá-lo para analisar os eventos FIM. Porém, no decorrer do processo diversos imprevistos aconteceram, como:
 1 - Não restartar o serviço após configurar;
 2 - Ter deixado rastros mal configurados no .conf, o que fez eu ter um enorme aprendizado e saber o terrível impacto negativo que uma vírgula errada faz (ou qualquer dígito minimamente errado).
 
