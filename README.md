@@ -48,9 +48,9 @@ Abaixo está a imagem do ossec.conf, aberto no bloco de notas pelo PowerShell, c
 ![Configuração FIM](docs/screenshots/03-fim-configuration.png)
 
 Parâmetros adicionados acima:
--realtime="yes": para monitorar na hora, sem ter que esperar a varredura periódica.
--check_all="yes": para comparar todos os atributos (hash, tamanho, permissões, dono e outros).
--report_changes="yes": guarda o que mudou no conteúdo, ajudando a ver a diferença no alerta.
+- realtime="yes": para monitorar na hora, sem ter que esperar a varredura periódica.
+- check_all="yes": para comparar todos os atributos (hash, tamanho, permissões, dono e outros).
+- report_changes="yes": guarda o que mudou no conteúdo, ajudando a ver a diferença no alerta.
 
 ### 5.3. Testes realizados
 
@@ -68,10 +68,10 @@ Arquivo 1: test-fim-pichau
 Arquivo 2: test2-fim-pichau
 ![Modificações realizadas 2](docs/screenshots/06-modifications-file-2.png)
 
-No Arquivo 1 foi exido o padrão corretamente (criação, modificação e exclusão), mas no 2 foi registrado de forma diferente, no log. 
+No Arquivo 1 foi exibido o padrão corretamente (criação, modificação e exclusão), mas no 2 foi registrado de forma diferente, no log. 
 Isso aconteceu por causa de um problema simples que eu havia enfrentado no começo, de não ter dado Restart-Service -Name WazuhSvc no serviço. 
 O restart é necessário após uma modificação ser realizada no .conf, para que seja atualizado e o arquivo registrado para ser monitorado entre em ação.
-Como eu não havia executado tal comando, ficou como se eu ainda não tivesse adicionado ele na parte "<directories></directories>", não registrando a criação do documento.txt.
+Como eu não havia executado tal comando, ficou como se eu ainda não tivesse adicionado ele na parte `<directories></directories>`, não registrando a criação do documento.txt.
 
 *Ponto importante: sempre restartar o serviço após modificar o ossec.conf.*
 
@@ -85,7 +85,7 @@ FIM Events: aqui é possível analisar todos eventos ocorridos após as modifica
 
 Análise dos hashs, antes e depois da modificação do arquivo test-fim-pichau\zzzzzzzz.txt:
 ![Analisando os hashs (syscheck.sha256_before e syscheck.sha256_after) para detectar eventuais modificações](docs/screenshots/09-document-details.png)
-Isso serve para ter a certeza de que um arquivo não foi modificado, pois quando um arquivo é criado/,modificado, o Wazuh (FIM) calcula um hash a cada varredura ou evento. Caso o arquivo seja modificado, o Wazuh atribui à ele um novo hash.
+Isso serve para ter a certeza de que um arquivo não foi modificado, pois quando um arquivo é criado/modificado, o Wazuh calcula um novo hash a cada varredura ou evento. Caso o arquivo seja modificado, o Wazuh atribui à ele um novo hash.
 
 ## 6. Resultados obtidos
 
