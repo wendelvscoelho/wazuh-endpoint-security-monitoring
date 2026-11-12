@@ -66,7 +66,7 @@ Isso aconteceu por causa de um problema simples que eu havia enfrentado no come�
 O restart é necessário após uma modificação ser realizada no .conf, para que seja atualizado e o arquivo registrado para ser monitorado entre em ação.
 Como eu não havia executado tal comando, ficou como se eu ainda não tivesse adicionado ele na parte "<directories></directories>", não registrando a criação do documento.txt.
 
-*Ponto importante: sempre restartar o serviço após modificar o .conf.*
+*Ponto importante: sempre restartar o serviço após modificar o ossec.conf.*
 
 ### 5.4. Análise dos alertas
 
