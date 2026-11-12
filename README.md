@@ -71,7 +71,10 @@ Como eu não havia executado tal comando, ficou como se eu ainda não tivesse ad
 ### 5.4. Análise dos alertas
 
 Eventos recentes ocorridos após modificações:
-![Análise dos alertas no "FIM: Recent Events"](docs/screenshots/04-recent-events.png)
+![Análise dos alertas no "FIM: Recent Events"](docs/screenshots/04-fim-recent-events.png)
+
+FIM Events: aqui é possível analisar todos eventos ocorridos após as modificações dos arquivos.
+![FIM Events](docs/screenshots/04-fim-events.png)
 
 Análise dos hash antes e depois:
 ![Analisando os hashs (syscheck.sha256_before e syscheck.sha256_after) para detectar eventuais modificações](docs/screenshots/09-document-details.png)
