@@ -76,7 +76,7 @@ Eventos recentes ocorridos após modificações:
 FIM Events: aqui é possível analisar todos eventos ocorridos após as modificações dos arquivos.
 ![FIM Events](docs/screenshots/08-fim-events.png)
 
-Análise dos hash antes e depois:
+Análise dos hashs, antes e depois da modificação do arquivo test-fim-pichau\zzzzzzzz.txt:
 ![Analisando os hashs (syscheck.sha256_before e syscheck.sha256_after) para detectar eventuais modificações](docs/screenshots/09-document-details.png)
 Isso serve para ter a certeza de que um arquivo não foi modificado, pois quando um arquivo é criado, um hash de criptografia é atribuído à ele automaticamente, para, assim, garantir a integridade do mesmo.
 
