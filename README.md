@@ -17,16 +17,23 @@ Implementar uma solução de monitoramento capaz de identificar alterações em 
 
 ## 4. Ambiente de laboratório
 
-- Sistema operacional monitorado: Windows 11
-- SIEM: Wazuh
-- Endpoint: Pichau (PC)
-- Ambiente: Laboratório virtualizado / próprio
+| Componente | Detalhe |
+|---|---|
+| Virtualização | VMware Workstation |
+| Wazuh Manager | 4.14.9, em VM Ubuntu Server 20.04.6 LTS (hostname `srv-wazuh`) |
+| Instalação do manager | Instalador assistido do Wazuh (`wazuh-install.sh -a`, all-in-one) |
+| Instalação do agente | Assistente "Deploy new agent" do dashboard + comando no PowerShell (pacote MSI), serviço iniciado com `NET START` |
+| Rede | VM em modo Bridge, na mesma rede local do endpoint |
+| Endpoint monitorado | Windows 11 Pro, agente Wazuh 4.14.9 (`Windows11-Agent`) |
+| Grupo do agente | `default` |
+
+O manager roda em uma VM no meu PC (Pichau). O endpoint monitorado é o Windows 11 do próprio PC, conectado ao manager pela porta 1514/TCP.
 
 ## 5. Implementação
 
 ### 5.1. Instalação e configuração do Agent
 
-Realizei a instalação através do passo a passo disponível na própria documentação do Wazuh (Wazuh agent): Primeiramente preenchi com o ID do meu Wazuh Server, escolhi um nome para meu endpoint, deixei "default" na parte groups (pois não havia criado nenhum grupo, já que, no momento, utilizei apenas um Agent) e depois colei o código disponibilizado no próprio Wazuh (para deploy do Agent no Windows) no PowerShell e finalizei subindo ele com um NET START Wazuh.
+Realizei a instalação através do passo a passo disponível na própria documentação do Wazuh (Wazuh agent): Primeiramente coloquei o endereço IP do servidor, escolhi um nome para meu endpoint, deixei "default" na parte groups (pois não havia criado nenhum grupo, já que, no momento, utilizei apenas um Agent) e depois colei o código disponibilizado no próprio Wazuh (para deploy do Agent no Windows) no PowerShell e finalizei subindo ele com um NET START Wazuh.
 ![Deploy do Agent](docs/screenshots/01-agent-deploy.png)
 
 Agent conectado com sucesso:
@@ -78,11 +85,11 @@ FIM Events: aqui é possível analisar todos eventos ocorridos após as modifica
 
 Análise dos hashs, antes e depois da modificação do arquivo test-fim-pichau\zzzzzzzz.txt:
 ![Analisando os hashs (syscheck.sha256_before e syscheck.sha256_after) para detectar eventuais modificações](docs/screenshots/09-document-details.png)
-Isso serve para ter a certeza de que um arquivo não foi modificado, pois quando um arquivo é criado, um hash de criptografia é atribuído à ele automaticamente, para, assim, garantir a integridade do mesmo.
+Isso serve para ter a certeza de que um arquivo não foi modificado, pois quando um arquivo é criado/,modificado, o Wazuh (FIM) calcula um hash a cada varredura ou evento. Caso o arquivo seja modificado, o Wazuh atribui à ele um novo hash.
 
 ## 6. Resultados obtidos
 
-A instalação e conexão do Agent ao WAZUH_MANAGER foi efetuada com êxito, conseguindo, posteriormente, analisar eventos de modificação dos arquivos configurados para monitoramento (test e test2). 
+A instalação e conexão do Agent ao Wazuh Manager foi efetuada com êxito, conseguindo, posteriormente, analisar eventos de modificação dos arquivos configurados para monitoramento (test e test2). 
 Meu objetivo era simples: configurar meu Wazuh e fazer o deploy de um novo Agent e configurá-lo para analisar os eventos FIM. Porém, no decorrer do processo diversos imprevistos aconteceram, como:
 1 - Não restartar o serviço após configurar;
 2 - Ter deixado rastros mal configurados no .conf, o que fez eu ter um enorme aprendizado e saber o terrível impacto negativo que uma vírgula errada faz (ou qualquer dígito minimamente errado).
@@ -97,7 +104,7 @@ Cheguei no meu objetivo principal de conseguir acompanhar os alertas FIM. Abaixo
 - Identificação e análise de eventos de segurança.
 - Interpretação de alertas em ambiente SIEM.
 
-Além de ter cumprido com a missão de ter instalado o Agent e realizado a conexão dele ao WAZUH_MANAGER, obtive certa familiaridade com certos comandos na CLI do Windows PowerShell e aprendi a evitar erros bobos que, normalmente, quebrariam com meu sistema Wazuh. 
+Além de ter cumprido com a missão de ter instalado o Agent e realizado a conexão dele ao Wazuh Manager, obtive certa familiaridade com certos comandos na CLI do Windows PowerShell e aprendi a evitar erros bobos que, normalmente, quebrariam com meu sistema Wazuh. 
 
 ## 8. Conclusão
 
